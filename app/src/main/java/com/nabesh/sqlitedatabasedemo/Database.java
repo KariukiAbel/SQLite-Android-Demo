@@ -13,6 +13,14 @@ public class Database extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "details.db";
     public static final String TABLE_USER = "contacts";
 
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_FIRSTNAME = "first name";
+    public static final String COLUMN_LASTNAME = "last name";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_PHONENUMBER = "phone number";
+    public static final String COLUMN_GENDER = "gender";
+    public static final String COLUMN_DATE_REGISTERED = "date registered";
+
     public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
