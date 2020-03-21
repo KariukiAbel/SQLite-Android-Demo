@@ -53,4 +53,8 @@ public class Database extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         onCreate(sqLiteDatabase);
     }
+
+    public void addDetails(){
+
+    }
 }
