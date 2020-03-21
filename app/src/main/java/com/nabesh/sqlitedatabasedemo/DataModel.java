@@ -1,6 +1,6 @@
 package com.nabesh.sqlitedatabasedemo;
 
-public class DetailsAdapter {
+public class DataModel {
     private int id;
     private String firstname;
     private String lastname;
