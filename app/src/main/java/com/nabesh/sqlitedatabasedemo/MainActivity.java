@@ -12,10 +12,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView tv;
     private EditText fname, lname, email, phoneNumber;
     private RadioButton male, female;
     private Button submit;
-    private String gender;
+    private String gender,firstname, lastname, mail, phoneno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.editText3);
         male = findViewById(R.id.radioButton);
         female = findViewById(R.id.radioButton2);
+        tv = findViewById(R.id.textView3);
+
+        firstname = fname.getText().toString();
+        lastname = lname.getText().toString();
+        mail = email.getText().toString();
+        phoneno = phoneNumber.getText().toString();
 
         if (male.isSelected()){
             gender = male.getText().toString();
@@ -34,19 +41,20 @@ public class MainActivity extends AppCompatActivity {
             gender = female.getText().toString();
         }
 
+        if (firstname.isEmpty() || lastname.isEmpty() || mail.isEmpty() || phoneno.isEmpty()){
+            tv.setText("Fill in all fields!");
+            tv.setTextColor(getResources().getColor(R.color.invalid));
+        }
+
         submit = findViewById(R.id.button);
         submit.setOnClickListener(submitOnClickListener);
     }
+
     private View.OnClickListener submitOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Database db = new Database(MainActivity.this,null,null,1);
-            DataModel model = new DataModel(
-                    0,
-                    fname.getText().toString(),
-                    lname.getText().toString(),email.getText().toString(),
-                    gender,
-                    phoneNumber.getText().toString());
+            DataModel model = new DataModel(0, firstname, lastname, mail, gender, phoneno);
             db.addDetails(model);
             Intent intent = new Intent(MainActivity.this, ViewActivity.class);
             startActivity(intent);
