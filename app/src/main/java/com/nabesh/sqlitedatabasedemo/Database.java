@@ -36,6 +36,15 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String CREATE_TABLE_SQL = "CREATE TABLE " + TABLE_USER + "(" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_FIRSTNAME + " VARCHAR(255) NOTNULL, " +
+                COLUMN_LASTNAME + " VARCHAR(255) NOTNULL, " +
+                COLUMN_EMAIL + " VARCHAR(255) NOTNULL, " +
+                COLUMN_PHONENUMBER + " VARCHAR(255) NOTNULL, " +
+                COLUMN_GENDER + " VARCHAR(255) NOTNULL, " +
+                COLUMN_DATE_REGISTERED + " TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP )";
+        sqLiteDatabase.execSQL(CREATE_TABLE_SQL);
 
     }
 
