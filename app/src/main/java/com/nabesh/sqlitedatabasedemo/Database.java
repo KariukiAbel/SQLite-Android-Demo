@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -14,12 +15,12 @@ public class Database extends SQLiteOpenHelper {
     public static final String TABLE_USER = "contacts";
 
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_FIRSTNAME = "first name";
-    public static final String COLUMN_LASTNAME = "last name";
+    public static final String COLUMN_FIRSTNAME = "first_name";
+    public static final String COLUMN_LASTNAME = "last_name";
     public static final String COLUMN_EMAIL = "email";
-    public static final String COLUMN_PHONENUMBER = "phone number";
+    public static final String COLUMN_PHONENUMBER = "phone_number";
     public static final String COLUMN_GENDER = "gender";
-    public static final String COLUMN_DATE_REGISTERED = "date registered";
+    public static final String COLUMN_DATE_REGISTERED = "date _registered";
 
     public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -38,13 +39,14 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_TABLE_SQL = "CREATE TABLE " + TABLE_USER + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_FIRSTNAME + " VARCHAR(255) NOTNULL, " +
-                COLUMN_LASTNAME + " VARCHAR(255) NOTNULL, " +
-                COLUMN_EMAIL + " VARCHAR(255) NOTNULL, " +
-                COLUMN_PHONENUMBER + " VARCHAR(255) NOTNULL, " +
-                COLUMN_GENDER + " VARCHAR(255) NOTNULL, " +
+                COLUMN_FIRSTNAME + " VARCHAR(255) NOT NULL, " +
+                COLUMN_LASTNAME + " VARCHAR(255) NOT NULL, " +
+                COLUMN_EMAIL + " VARCHAR(255) NOT NULL, " +
+                COLUMN_PHONENUMBER + " VARCHAR(255) NOT NULL, " +
+                COLUMN_GENDER + " VARCHAR(255) NOT NULL, " +
                 COLUMN_DATE_REGISTERED + " TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP )";
         sqLiteDatabase.execSQL(CREATE_TABLE_SQL);
+        Log.d("Database","Database created successfull");
 
     }
 
@@ -66,5 +68,6 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_USER,null,values);
         db.close();
+        Log.d("Database","Data added successfully to db");
     }
 }
