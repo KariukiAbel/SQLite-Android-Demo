@@ -24,7 +24,12 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener submitOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            fname = findViewById(R.id.editText);
+            lname = findViewById(R.id.editText1);
+            email = findViewById(R.id.editText2);
+            phoneNumber = findViewById(R.id.editText3);
+            male = findViewById(R.id.radioButton);
+            female = findViewById(R.id.radioButton2);
         }
     };
 }
