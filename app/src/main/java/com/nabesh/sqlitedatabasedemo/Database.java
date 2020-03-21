@@ -1,5 +1,6 @@
 package com.nabesh.sqlitedatabasedemo;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
@@ -54,7 +55,17 @@ public class Database extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void addDetails(){
+    public void addDetails(DetailsAdapter detailsAdapter){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID,detailsAdapter.getId());
+        values.put(COLUMN_FIRSTNAME,detailsAdapter.getFirstname());
+        values.put(COLUMN_LASTNAME,detailsAdapter.getLastname());
+        values.put(COLUMN_EMAIL,detailsAdapter.getEmail());
+        values.put(COLUMN_PHONENUMBER,detailsAdapter.getPhonenumber());
+        values.put(COLUMN_GENDER,detailsAdapter.getGender());
 
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_USER,null,values);
+        db.close();
     }
 }
