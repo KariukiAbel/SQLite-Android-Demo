@@ -8,6 +8,15 @@ public class DataModel {
     private String gender;
     private String phonenumber;
 
+    public DataModel(int id, String firstname, String lastname, String email, String gender, String phonenumber){
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.gender = gender;
+        this.phonenumber = phonenumber;
+    }
+
     public int getId() {
         return id;
     }

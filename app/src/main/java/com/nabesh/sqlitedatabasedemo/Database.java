@@ -2,11 +2,10 @@ package com.nabesh.sqlitedatabasedemo;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class Database extends SQLiteOpenHelper {
@@ -22,7 +21,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String COLUMN_GENDER = "gender";
     public static final String COLUMN_DATE_REGISTERED = "date registered";
 
-    public Database(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
@@ -55,7 +54,7 @@ public class Database extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void addDetails(DetailsAdapter detailsAdapter){
+    public void addDetails(DataModel detailsAdapter){
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID,detailsAdapter.getId());
         values.put(COLUMN_FIRSTNAME,detailsAdapter.getFirstname());
